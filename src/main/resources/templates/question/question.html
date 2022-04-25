@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+
+    <style>#output_div {white-space: pre-wrap;}
+    </style>
+</head>
+
+<body>
+<h1 th:if="${question.getStatus()}==True">Вопрос Решен!</h1>
+<div id="question">
+</div>
+
+
+
+<br>
+Answers:
+<p th:if="${question.getAnswers().isEmpty()}">Ответов нет</p>
+<br>
+<br>
+<div id="answer"></div>
+
+<br>
+<br>
+Answer  question:
+<br>
+<br>
+
+
+<form method="post" th:action="@{'/q/'+${question.id}+'/answer'}" th:if="${question.getStatus()}==False">
+    <textarea cols="50" rows="6"  name="text"></textarea>
+    <input type="submit" value="Reply">
+</form>
+<br>
+<br>
+</body>
+
+
+
+<script th:inline="javascript">
+    var answers = [[${answers}]];
+    var question = [[${question}]]
+    var answer = "";
+    var answer_text = "";
+    for (var i = 0;i<answers.length;i++){
+        answer_text = answers[i].body;
+        var href = "http://localhost:8080/user/"+answers[i].userDTO.id;
+        answer+="Ответ дан:"+answers[i].date +
+            "<br>"+ "User: "+"<a href="+href+">"+answers[i].userDTO.username +"</a><br><br>" +
+            "<p id='output_div'>"+answers[i].body+"</p><br><br><br>"
+    }
+    document.getElementById("answer").innerHTML = answer;
+    document.getElementById("question").innerHTML = "<h2 "+question.subject+"></h2><br>" +
+        "<p>"+question.body+"</p><br><br>"
+
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">#output_div {white-space: pre-wrap;}p{color: #0aaeb3}</style>
+    <link rel="stylesheet" href="/path/to/styles/default.min.css">
+    <script src="/path/to/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+Отелить код - "$" с 2 сторон
+<br>
+<textarea  id="text" onkeyup="input()" cols="100" rows="8"></textarea>
+<div id="output_div"></div>
+
+</body>
+<script>
+
+    function input() {
+
+
+    var textarea = document.getElementById('text').value;
+    var text=textarea;
+    for(var i=0;i<textarea.length;i++){
+        if(textarea.slice(i,i+1)==="$"){
+            console.log(textarea.slice(i,i+1))
+
+            console.log("helloццц")
+            for(var j=i+3;j<textarea.length;j++){
+                if(textarea.slice(j,j+1)==="$"){
+                    if(i===0 && j+1===textarea.length) {
+                        text = "\n"+"CODE:" + "\n" + "<p style='color: #4b0cfa'>"+text+"</p>";
+                        console.log(text)
+                    }
+                    else {
+                        for (var h=0;h<textarea.length;h++){
+                            if(h===i+1){
+                                text+="\n"+"\n"+"CODE:"+""+textarea.slice(i+1,j)+"\n"+"\n";
+                            }
+
+                            if(!h>j){
+
+                                text+=textarea.slice(i,i+1)
+
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+    document.getElementById('output_div').innerHTML = text;
+}
+</script>
+</html>

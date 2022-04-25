@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>new question</title>
+    <style></style>
+</head>
+<body>
+<form th:method="POST" th:action="@{new}" th:object="${question}">
+    <div style="color:red" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}">Email Error</div>
+    <label for="email">Enter subject: </label>
+
+    <input type="text" th:field="*{subject}" name ="email" id="email"/>
+
+    <br>
+    <div style="color:red" th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Password Error</div>
+    <label for="email">Enter body: </label>
+    <textarea id="text" th:field="*{body}" onclick="input()" name="body" cols="100" rows="8" style="white-space: normal;"></textarea></p>
+    <br>
+    <input type="submit" value="sing in!"/>
+</form>
+<div id="output_div"></div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{'/q/edit/' + ${question.getId()}}">
+    <label>Subject</label>
+    <input type="text" name="subject" th:value="${question.getSubject()}">
+    <br>
+    <label></label>
+    <textarea th:text="${question.getBody()}" cols="100" rows="8" name="body" th:value="${question.getBody()}"></textarea>
+     <br>
+    <input type="submit" value="edit">
+</form>
+</body>
+</html>

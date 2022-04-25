@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>#output_div {white-space: pre-wrap;}</style>
+    <script th:inline="javascript">var user = [[${questions}]];
+    for (var i=0;i<user.length;i++) {
+        var id=String(user[i].id);
+        var name =user[i].subject;
+        console.log(id)
+        document.write('<a href='+id+'>'+name+'</a><br>');
+    }
+    </script>
+</head>
+
+<body>
+<h1 th:text="${not_question}"></h1>
+<!--<p id="output_div" th:text="${body}"/>-->
+
+</body>
+</html>
